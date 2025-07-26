@@ -1,4 +1,5 @@
 "use client";
+
 import { Button } from "@/components/ui/button";
 import { AccountsTable } from "./list";
 import { useEffect, useState } from "react";
@@ -24,26 +25,20 @@ export default function Home() {
   useEffect(() => {
     const fetchAccounts = async () => {
       const res = await fetch(`/api/accounts?type=${type}`);
-      const { accounts }: any = await res.json();
+      const json: { accounts: Account[] } = await res.json();
 
-      const _coins = accounts.reduce(
-        (
-          accumulator: number,
-          currentValue: { coins: number },
-          currentIndex: number,
-          array: any[]
-        ) => {
-          return accumulator + currentValue.coins;
-        },
-        0 // <- Initial value phải có, khởi tạo accumulator = 0
-      );
+      const accounts = json.accounts;
+
+      const _coins = accounts.reduce((accumulator, currentValue) => {
+        return accumulator + currentValue.coins;
+      }, 0);
 
       console.log(_coins);
       setCoins(_coins);
-
       setData(accounts);
       setIsLoading(false);
     };
+
     fetchAccounts();
   }, [type]);
 
@@ -69,6 +64,7 @@ export default function Home() {
           Chưa kích hoạt
         </Button>
       </div>
+
       <div>
         <Analysis coins={coins} />
       </div>
