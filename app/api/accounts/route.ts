@@ -2,7 +2,6 @@ import { db } from "@/database/drizzle";
 import { accounts } from "@/database/schema";
 import { NextResponse } from "next/server";
 import { v4 as uuidv4 } from "uuid";
-import { NextApiRequest, NextApiResponse } from "next";
 import { getAccounts } from "@/database/queries";
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
