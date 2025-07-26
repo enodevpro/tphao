@@ -8,8 +8,12 @@ body,
 :root {
   @apply h-full;
   font-size: 15px;
+  cursor: pointer;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

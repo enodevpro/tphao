@@ -3,8 +3,9 @@
 import { Button } from "@/components/ui/button";
 import { AccountsTable } from "./list";
 import { useEffect, useState } from "react";
-import { Loader } from "lucide-react";
+import { Loader, Activity, TicketX } from "lucide-react";
 import Analysis from "./analysis";
+import { Loading, LoadingOverlay } from "@/components/loading-snipper";
 
 type Account = {
   id: string;
@@ -33,7 +34,6 @@ export default function Home() {
         return accumulator + currentValue.coins;
       }, 0);
 
-      console.log(_coins);
       setCoins(_coins);
       setData(accounts);
       setIsLoading(false);
@@ -43,34 +43,44 @@ export default function Home() {
   }, [type]);
 
   return (
-    <div className="w-full min-h-full bg-zinc-900 p-20">
-      <div className="flex items-center gap-5 mb-5">
-        <Button
-          className="bg-green-500 hover:bg-green-600 cursor-pointer"
-          onClick={() => {
-            setType("active");
-            setIsLoading(true);
-          }}
-        >
-          Đã kích hoạt
-        </Button>
-        <Button
-          className="bg-rose-500 hover:bg-rose-600 cursor-pointer"
-          onClick={() => {
-            setType("in-active");
-            setIsLoading(true);
-          }}
-        >
-          Chưa kích hoạt
-        </Button>
-      </div>
+    <div className="w-full min-h-screen bg-zinc-900">
+      <header className="fixed top-0 left-0 w-full backdrop-blur-md bg-zinc-900/80 shadow-md z-50">
+        <div className="max-w-7xl mx-auto px-6 py-4 grid grid-cols-1 md:grid-cols-2 items-center gap-4">
+          <div className="flex items-center gap-3">
+            <Button
+              variant="outline"
+              className={`bg-green-500 hover:bg-green-600 text-white`}
+              onClick={() => {
+                setType("active");
+                setIsLoading(true);
+              }}
+            >
+              <Activity className="w-4 h-4 mr-2" /> Đã kích hoạt
+            </Button>
+            <Button
+              variant="outline"
+              className={`bg-rose-500 hover:bg-rose-600 text-white`}
+              onClick={() => {
+                setType("in-active");
+                setIsLoading(true);
+              }}
+            >
+              <TicketX className="w-4 h-4 mr-2" /> Chưa kích hoạt
+            </Button>
+          </div>
+          <div className="flex justify-end">
+            <Analysis coins={coins} />
+          </div>
+        </div>
+      </header>
 
-      <div>
-        <Analysis coins={coins} />
-      </div>
-
-      {isLoading && <Loader className="animate-spin w-4 h-4 text-white" />}
-      {!isLoading && <AccountsTable accounts={data} />}
+      <main className="pt-15 px-6">
+        {isLoading ? (
+          <Loading type="default" message="Đang tải..." size="sm" />
+        ) : (
+          <AccountsTable accounts={data} />
+        )}
+      </main>
     </div>
   );
 }
