@@ -245,8 +245,12 @@ export const AccountsTable = ({ accounts }: { accounts: Account[] }) => {
                 Tiền
               </th>
               <th className="px-6 py-4 text-center text-xs font-semibold text-zinc-300 uppercase tracking-wider">
+                Cấp độ
+              </th>
+              <th className="px-6 py-4 text-center text-xs font-semibold text-zinc-300 uppercase tracking-wider">
                 Trạng Thái
               </th>
+
               <th className="px-6 py-4 text-center text-xs font-semibold text-zinc-300 uppercase tracking-wider">
                 Thời Gian
               </th>
