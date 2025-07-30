@@ -11,6 +11,7 @@ type AccountInput = {
   coins: number;
   money: number;
   status: string;
+  level: string;
 };
 
 export async function GET(req: Request) {
@@ -52,6 +53,7 @@ export async function POST(req: Request) {
         coins: Number(str[2]),
         money: Number(str[3]),
         status: str[4],
+        level: str[5],
       };
 
       dataPush.push(obj);
@@ -60,5 +62,5 @@ export async function POST(req: Request) {
 
   await db.insert(accounts).values(dataPush);
 
-  return NextResponse.json({ oke: "D" });
+  return NextResponse.json({ message: "Cập nhật dữ liệu thành công..." });
 }

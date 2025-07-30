@@ -6,5 +6,6 @@ export const accounts = pgTable("accounts", {
   coins: integer("coins").notNull(),
   money: integer("money").notNull(),
   status: text("status").notNull(),
+  level: text("level").notNull(),
   createdAt: timestamp("created_at").defaultNow(),
 });
