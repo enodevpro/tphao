@@ -21,6 +21,7 @@ type Account = {
   coins: number;
   money: number;
   status: string;
+  level: string;
   createdAt: string; // ISO date string
 };
 
@@ -277,11 +278,9 @@ export const AccountsTable = ({ accounts }: { accounts: Account[] }) => {
                       className="w-4 h-4 text-blue-600 bg-zinc-700 border-zinc-600 rounded focus:ring-blue-500 focus:ring-2"
                     />
                   </td>
-
                   <td className="px-6 py-4 text-sm font-medium text-zinc-400">
                     {index + 1}
                   </td>
-
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
                       <div className="flex-1">
@@ -306,7 +305,6 @@ export const AccountsTable = ({ accounts }: { accounts: Account[] }) => {
                       </button>
                     </div>
                   </td>
-
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
                       <div className="flex-1">
@@ -345,7 +343,6 @@ export const AccountsTable = ({ accounts }: { accounts: Account[] }) => {
                       </div>
                     </div>
                   </td>
-
                   <td className="px-6 py-4 text-right">
                     <div className="flex items-center justify-end gap-2">
                       <Coins size={16} className="text-yellow-400" />
@@ -354,7 +351,6 @@ export const AccountsTable = ({ accounts }: { accounts: Account[] }) => {
                       </span>
                     </div>
                   </td>
-
                   <td className="px-6 py-4 text-right">
                     <div className="flex items-center justify-end gap-2">
                       <DollarSign size={16} className="text-green-400" />
@@ -362,6 +358,12 @@ export const AccountsTable = ({ accounts }: { accounts: Account[] }) => {
                         {account.money.toLocaleString()}
                       </span>
                     </div>
+                  </td>
+
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-sm font-semibold text-white">
+                      {account.level.toLocaleString()}
+                    </span>
                   </td>
 
                   <td className="px-6 py-4 text-center">
@@ -376,7 +378,6 @@ export const AccountsTable = ({ accounts }: { accounts: Account[] }) => {
                       </span>
                     </div>
                   </td>
-
                   <td className="px-6 py-4 text-center">
                     <div className="flex items-center justify-center gap-2 text-zinc-400">
                       <Calendar size={14} />
