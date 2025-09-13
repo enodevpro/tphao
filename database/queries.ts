@@ -9,7 +9,6 @@ export const getAccounts = async (type: string) => {
     where: eq(accounts.status, type),
     ...(isInactive && {
       orderBy: desc(accounts.coins),
-      limit: 100,
     }),
   });
 
