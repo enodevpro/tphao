@@ -14,6 +14,7 @@ type Account = {
   coins: number;
   money: number;
   status: string;
+  level: string;
   createdAt: string;
 };
 
